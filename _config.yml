@@ -1,0 +1,18 @@
+# Site settings
+title: "On Programming, Live<br>and Life"
+author: "Gaiheilu Kamei"
+description: "This is a blog about whatever I want to write."
+keywords: "Backend Development, Golang, Perception"
+biography: "A coding peasant whom graduated from Henan Polytechnic University and working in the Imperial Capital."
+colophon: "© Gaiheilu Kamei.<br>Content available under <a href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons (BY-NC-SA)</a> unless otherwise noted.<br>This site is hosted at <a href='https://pages.github.com/'>Github Pages</a> and created with <a href='http://jekyllrb.com/'>Jekyll</a>."
+
+baseurl: ""
+url: "http://www.gaiheilukamei.cc"
+
+github_username: GaiheiluKamei
+google-analytics: UA-162755116-1
+
+simple_search: http://google.com/search
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
