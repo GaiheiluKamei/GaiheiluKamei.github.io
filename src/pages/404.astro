@@ -1,0 +1,39 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<html lang="en">
+<head>
+    <BaseHead/>
+    <style>
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-column: 2;
+        }
+
+        h1 {
+            margin-bottom: 0;
+        }
+
+        span {
+            padding-left: 0.5rem;
+            font-style: oblique;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<Header/>
+<main>
+    <div>
+        <h1>404 |</h1><span>The wilderness of knowledge</span>
+    </div>
+</main>
+<Footer/>
+</body>
+</html>

@@ -1,0 +1,63 @@
+---
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import BaseHead from '../components/BaseHead.astro'
+
+const { title, publishedAt } = Astro.props
+const year = publishedAt.getFullYear()
+const month = publishedAt.toLocaleString('default', { month: 'short' })
+const day = publishedAt.getDate()
+---
+<html lang="en">
+<head>
+    <BaseHead {title} />
+    <style>
+        .article-header {
+            margin-bottom: 1rem;
+            text-align: center;
+            min-height: 5.3rem;
+        }
+
+        .article-header div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .article-header time {
+            width: 2.5rem;
+            line-height: 0.71;
+            font-size: 0.5rem;
+            border-left-style: solid;
+            border-right-style: solid;
+            border-width: 0.01rem;
+            //border-color: #a5c9ea;
+        }
+
+        .article-header time span {
+            display: block;
+            font-weight: bold;
+            padding-top: 0.2rem;
+            padding-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+<Header/>
+<main>
+    <article>
+        <div class="article-header">
+            <h1>{title}</h1>
+            <div>
+                <time datetime={publishedAt.toLocaleString()}>{month}<span>{day}</span>{year}
+                </time>
+            </div>
+        </div>
+        <slot/>
+    </article>
+</main>
+<Footer/>
+</body>
+</html>
