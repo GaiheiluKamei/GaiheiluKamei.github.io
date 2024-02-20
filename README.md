@@ -20,6 +20,8 @@ All commands are run from the root of the project, from a terminal:
 
 - [Bootstrap Icon](https://icons.getbootstrap.com/)
 - [Favicon Generator](https://realfavicongenerator.net/)
+- [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain)
+- [Deploy your Astro Site to GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)
 
 
 
