@@ -9,4 +9,7 @@ const posts = defineCollection({
     })
 })
 
-export const collections = {posts}
+export const collections = {
+    ruby: posts,
+    js: posts,
+}
