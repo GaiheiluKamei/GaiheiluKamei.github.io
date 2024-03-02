@@ -93,8 +93,12 @@ p {
     margin-bottom: 1rem;
 }
 
-article :nth-child(2) {
-    min-height: 2.5rem;
+ul {
+    margin-bottom: 1rem;
+}
+
+p strong {
+    font-weight: bold;
 }
 
 article > :nth-child(2):first-letter {
@@ -120,6 +124,10 @@ pre {
     padding: 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
+}
+
+pre code {
+    font-size: 0.7rem;
 }
 
 blockquote {
