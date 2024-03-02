@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content'
+import Post from '../../layouts/Post.astro'
+
+export async function getPostsByCategory(category) {
+    const entries = await getCollection(category, ({data}) => data.publishedAt !== undefined) || []
+    return entries.map(post => ({params: { category, slug: post.slug }, props: post}))
+}
+export async function getStaticPaths() {
+    return [
+        ...await getPostsByCategory('ruby'),
+        ...await getPostsByCategory('js')
+    ]
+}
+
+const post = Astro.props
+const { Content } = await post.render()
+---
+<Post title={post.data.title} publishedAt={post.data.publishedAt}>
+    <Content />
+</Post>
