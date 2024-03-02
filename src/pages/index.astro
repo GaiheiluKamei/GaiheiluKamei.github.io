@@ -2,14 +2,36 @@
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import { getCollection } from 'astro:content'
+
+const jsPosts = await getCollection('js')
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<BaseHead/>
 </head>
+<style>
+	div {
+		grid-column-start: 2;
+		margin-top: auto;
+		text-align: center;
+	}
+
+	li {
+		list-style-type: none;
+	}
+
+</style>
 <body>
 	<Header/>
+	<main>
+		<div>
+			<ul class="category">
+				{jsPosts.map(p => <li><a href={`js/${p.slug}`}>{p.data.title}</a></li>)}
+			</ul>
+		</div>
+	</main>
 	<Footer/>
 </body>
 </html>
