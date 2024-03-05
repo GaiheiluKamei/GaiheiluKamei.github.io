@@ -4,7 +4,7 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { getCollection } from 'astro:content'
 
-const jsPosts = await getCollection('js')
+const jsPosts = (await getCollection('js')).reverse()
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +24,7 @@ const jsPosts = await getCollection('js')
 
 	li {
 		list-style-type: none;
+		margin-bottom: .5rem;
 	}
 
 </style>
