@@ -1,5 +1,5 @@
 ---
-title: JavaScript中的模块 (Modules)
+title: JavaScript 中的模块 (Modules)
 publishedAt: 2024-03-05
 ---
 
