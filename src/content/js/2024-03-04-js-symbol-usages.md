@@ -1,5 +1,5 @@
 ---
-title: JavaScript中的Symbol、Iterator和Generator
+title: JavaScript 中的 Symbol、Iterator 和 Generator
 publishedAt: 2024-03-04
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: JavaScript中的剩余参数和默认参数
+title: JavaScript 中的剩余参数和默认参数
 publishedAt: '2024-03-01'
 ---
 
