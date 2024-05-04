@@ -12,4 +12,5 @@ const posts = defineCollection({
 export const collections = {
     ruby: posts,
     js: posts,
+    go: posts,
 }
