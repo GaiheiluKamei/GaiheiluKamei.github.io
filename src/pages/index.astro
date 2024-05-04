@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro'
 import { getCollection } from 'astro:content'
 
 const jsPosts = (await getCollection('js')).reverse()
+const goPosts = (await getCollection('go')).reverse()
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +34,7 @@ const jsPosts = (await getCollection('js')).reverse()
 	<main>
 		<div>
 			<ul class="category">
+				{goPosts.map(p => <li><a href={`go/${p.slug}`}>{p.data.title}</a></li>)}
 				{jsPosts.map(p => <li><a href={`js/${p.slug}`}>{p.data.title}</a></li>)}
 			</ul>
 		</div>
