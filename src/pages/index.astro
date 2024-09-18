@@ -7,6 +7,7 @@ import { getCollection } from 'astro:content'
 const jsPosts = (await getCollection('js')).reverse()
 const goPosts = (await getCollection('go')).reverse()
 const rubyPosts = (await getCollection('ruby')).reverse()
+const otherPosts = (await getCollection('other')).reverse()
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +38,7 @@ const rubyPosts = (await getCollection('ruby')).reverse()
 	<main>
 		<div>
 			<ul class="category">
+				{otherPosts.map(p => <li><a href={`other/${p.slug}`}>{p.data.title}</a></li>)}
 				{rubyPosts.map(p => <li><a href={`ruby/${p.slug}`}>{p.data.title}</a></li>)}
 				{goPosts.map(p => <li><a href={`go/${p.slug}`}>{p.data.title}</a></li>)}
 				{jsPosts.map(p => <li><a href={`js/${p.slug}`}>{p.data.title}</a></li>)}
