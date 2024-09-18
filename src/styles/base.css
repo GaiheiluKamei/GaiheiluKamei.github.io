@@ -92,7 +92,7 @@ p {
     margin-bottom: 1rem;
 }
 
-ul {
+ul, ol {
     margin-bottom: 1rem;
 }
 
@@ -136,6 +136,8 @@ blockquote {
     padding-left: 0.9rem;
     margin-left: -1rem;
     font-style: oblique;
+    color: dimgray;
+    font-size: .76rem;
 }
 
 blockquote > :last-child {
@@ -149,6 +151,11 @@ blockquote code {
 
 blockquote em {
     font-style: normal;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Media Query */

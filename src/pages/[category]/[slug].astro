@@ -10,7 +10,8 @@ export async function getStaticPaths() {
     return [
         ...await getPostsByCategory('ruby'),
         ...await getPostsByCategory('js'),
-        ...await getPostsByCategory('go')
+        ...await getPostsByCategory('go'),
+        ...await getPostsByCategory('other')
     ]
 }
 
