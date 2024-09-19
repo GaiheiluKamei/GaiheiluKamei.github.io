@@ -147,6 +147,7 @@ blockquote > :last-child {
 blockquote code {
     font-style: normal;
     font-weight: 400;
+    color: white;
 }
 
 blockquote em {
