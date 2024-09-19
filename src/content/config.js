@@ -13,4 +13,5 @@ export const collections = {
     ruby: posts,
     js: posts,
     go: posts,
+    other: posts,
 }
