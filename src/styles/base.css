@@ -73,8 +73,8 @@ a:hover {
 
 /* article */
 main {
-    display: grid;
-    grid-template-columns: 1fr minmax(840px, 55%) 1fr;
+    max-width: 840px;
+    margin: 0 auto;
 }
 
 article {
