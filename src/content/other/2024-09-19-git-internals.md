@@ -1,5 +1,5 @@
 ---
-title: Git 的内部结构
+title: Git Internals 笔记 - 内部结构
 publishedAt: '2024-09-19'
 ---
 
@@ -149,6 +149,8 @@ e65s46^{tree}
 # 对于引用某一个 commit 或 tree 之下的特定 blob 非常有用
 master:/path/to/file
 ```
+
+> 补充： Zsh 下直接使用 `^` 符号会报错，需要使用引号，如 `"master^"`。
 
 ## 6. Git 目录
 
