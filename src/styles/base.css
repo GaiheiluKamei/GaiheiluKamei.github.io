@@ -116,7 +116,7 @@ p code, li code, span code {
     font-family: 'Source Code Pro', Menlo, Monaco, Inconsolata, sans-serif;
     background-color: dimgray;
     border-radius: 3px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 pre {
@@ -126,7 +126,7 @@ pre {
 }
 
 pre code {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 
 blockquote {
