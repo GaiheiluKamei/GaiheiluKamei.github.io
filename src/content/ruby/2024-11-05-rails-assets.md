@@ -9,7 +9,7 @@ publishedAt: 2024-11-05
 - 非交互式文档 (PDF/Excel)
 - 站点地图和机器人 (`sitemap.xml`, `robots.txt`)
 - 字体文件
-- JavaScript、CSS 文件 
+- JavaScript、CSS 文件
   - 这两类看起来仿佛不是静态资源，但是不妨思考一下，当 Rails 程序处理请求时，Ruby 是否实时重新生成任何 JavaScript 或 CSS 文件？是否动态地向这些文件注入任何内容？答案是否定的。因此，从 Rails 的角度来看，所有的 JavaScript 和 CSS 都是静态资源
   - (但即便如此，它们却不该存在于 `public` 目录内)
 
@@ -27,7 +27,7 @@ publishedAt: 2024-11-05
 
 浏览器发出请求，收到这个页面作为响应，解析并渲染这个页面。当它遇到 `<img>` 标签时，会向 `/some-pic.jpg` 路径再发出一个请求。
 
-但图片是一个静态资源，我们不需要也不必要为这个图片资源创建一个 route 和 controller，所以我们该如何响应这个请求？ 
+但图片是一个静态资源，我们不需要也不必要为这个图片资源创建一个 route 和 controller，所以我们该如何响应这个请求？
 
 ## 2. Rails 如何处理静态资源
 
@@ -65,7 +65,7 @@ public
 - 访问 `/some` 和 `/some.html` 效果相同
 - 访问 `/a-folder` 和 `/a-folder/index.html` 效果相同
 
-> 🤔 所以...  
+> 🤔 所以...
 >
 > 如果把 `index.html` 直接放入 `public` 目录，那么 `routes.rb` 中设置的 `root` 路由将无效。
 
@@ -95,7 +95,7 @@ public
 
 Rails 约定把这些“易变” (比如每年一次以上) 的资源放到 `app/assets/` 目录内，并通过 [Propshaft](https://github.com/rails/propshaft) **自动产生带有哈希值文件名的文件，并将其复制到 `public` 目录**。
 
-> 在生产环境下 (即 `ENV=production`) Propshaft 确实会进行上述操作，但在开发环境下，Propshaft 直接提供静态资源，不会进行上述操作，所以我们在 `public` 目录中看不到带有哈希值的文件。  
+> 在生产环境下 (即 `ENV=production`) Propshaft 确实会进行上述操作，但在开发环境下，Propshaft 直接提供静态资源，不会进行上述操作，所以我们在 `public` 目录中看不到带有哈希值的文件。
 >
 > 如果开发环境下我们确实想在 `public` 内看到这些文件，可以使用 `rails assets:precompile` 命令 （这个命令通常仅在生产环境使用）。
 
@@ -137,8 +137,8 @@ if request.get? || request.head?
 end
 ```
 
-> ⚠️**Warning**:  
->   
+> ⚠️**Warning**:
+>
 > 所以要注意静态文件的命名：如果我们的 `routes.rb` 中包含 `resources :posts` 路由，而 `public` 目录内有名为 `posts` 或者 `posts.html` 的文件，那么路由将永远不会被访问。
 
 在**生产模式**下，静态资源可以通过多种方式交付，如使用专用 Web 服务器 Nginx 直接提供 Rails `public` 目录的内容， 或使用 CDN。无论哪种方式，最终结果是相同的：**Web 服务器直接提供静态资源，对静态内容的请求永远不会到达 Rails 应用**，这使得 Rails 应用不必忙于静态内容的请求。
@@ -163,7 +163,7 @@ CDN 大致有两种类型：
 
 1. "Pull" 方式：即 CDN 作为第三方，从源服务器获取资源 (通常只获取一次)，然后无限期地为此资源提供服务。这种方式需要在 Rails 中配置 CDN 子域名：`config.asset_host = "cdn.example.com"`。
 2. "Reverse Proxy" 方式：这种方式最初由 Cloudflare 推广，本质上是让 CDN 控制我们的主域名，即所有的请求都通过 CDN，相当于 CDN 直接作为反向代理，这种方式不需要修改 Rails 程序，但需要修改 DNS。
-  
+
 Rails 指南对 Pull 方式的 CDN 配置做了非常详细的[介绍](https://guides.rubyonrails.org/asset_pipeline.html#cdns)，非常值得一看。
 
 ## 4. 参考链接
