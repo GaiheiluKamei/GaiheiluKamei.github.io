@@ -167,7 +167,7 @@ end
 - `temporary: true`：创建临时表 - 当应用程序和数据库的连接断开时，表就会消失。在迁移的背景下没有什么意义，但在其他地方有用武之地
 - `options: "xxx"`：用来指定基础数据库的选项，被添加到 `CREATE TABLE` 语句的末尾，紧跟在右括号之后。
   - `create_table :tickets, options: "auto_increment = 10000" do |t| ...`
-  - 这个选项和 MySQL 数据库一起使用时要小心，Rails MySQL Adapter 默认使用 `ENGINE=InnoDB`，如果使用 `:options` 而没有显示添加 `ENGINE=InnoDB`，那么将会使用配置的默认存储引擎。
+  - 这个选项和 MySQL 数据库一起使用时要小心，Rails MySQL Adapter 默认使用 `ENGINE=InnoDB`，如果使用 `:options` 而没有显式添加 `ENGINE=InnoDB`，那么将会使用配置的默认存储引擎。
 
 还可以使用 `:primary_key` 选项修改主键名，但并不推荐；以及使用 `id: false` 告诉 Rails 不要自动添加 `id` 列，这在连接表的情况下可能常见，但要注意，对于不指定主键的表，那么我们最好加上索引，否则全表扫描令人昼夜不安。
 
@@ -218,7 +218,7 @@ class AddPartNumberToProducts < ActiveRecord::Migration
 end
 ```
 
-`remove_index` 则用来删除索引，由于用的不多，而且[官方文档](https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-remove_index)列出了更丰富的例子，这里就不赘述、徒增篇幅了。
+`remove_index` 则用来删除索引，由于用的不多，而且[官方文档](https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-remove_index)列出了更丰富的例子，这里就不再赘述、徒增篇幅了。
 
 > 写一篇文章并不像想象中那么简单，原本计划一天写完的内容，限于篇幅和精力，不得不把一些内容拆分到第二篇。
 > 下一篇会总结一些 Rails Migration 的高级用法。
