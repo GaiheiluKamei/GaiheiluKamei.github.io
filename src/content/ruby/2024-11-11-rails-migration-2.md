@@ -149,3 +149,5 @@ end
 > **`with_connection()` 接受一个代码块，并将一个连接对象传递到该代码块中，它保证块内的所有操作都使用同一个连接，并确保在多线程环境下的线程安全。当代码块执行完毕之后，连接对象会被异步释放回连接池，从而避免连接泄漏，并通过防止不必要的连接保持来间接提高高 IO 场景下的并发处理能力**。
 >
 > 多线程环境中，多个线程同时使用同一个连接可能会导致数据不一致或死锁，`with_connection()` 通过为每个线程提供一个独立的连接来避免这个问题。**`with_connection()` 的线程安全特性是它在并发环境中至关重要的一个方面**。
+
+最后，官方文档永远是最强的 (我检查了之前的两篇文章，发现公众号上的外链没了，所以这次直接贴出连接，总比没有好：[https://guides.rubyonrails.org/active_record_migrations.html](https://guides.rubyonrails.org/active_record_migrations.html))。
