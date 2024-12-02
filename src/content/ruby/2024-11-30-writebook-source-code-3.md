@@ -1,5 +1,5 @@
 ---
-title: 37signals Writebook 源码学习(3) - Model 层的完美抽象 (book/leaf)
+title: 37signals Writebook 源码学习(3) - Model 层中的完美设计 (book/leaf)
 publishedAt: 2024-11-30
 ---
 
@@ -276,9 +276,16 @@ module Leafable
 end
 ```
 
+> `leafable_name` 方法即是实例方法又是类方法，因为在某些情况下我们可能在一个实例方法上需要访问类的名称；这种双重定义是为了方便访问，并避免潜在的错误，在实例方法和类方法之间提供一个桥梁。
+
 Leafable 模块 `extend ActiveSupport::Concern` 之后，就可以使用 `included` 创建实例方法，使用 `class_methods` 创建类方法；之后，所有 `include Leafable` 的类都包含这些实例方法和类方法。
 
-如果不需要考虑那么复杂，那么这就是 Concern。
+如果不需要考虑那么复杂，那么这就是 Concern：
+
+- 在一个模块中，首先 `extend ActiveSupport::Concern`
+- 再使用 `included` 方法定义需要的实例方法
+- 如果有需要，还可以使用 `class_methods` 定义需要的类方法
+- 放在 `included` 块内的实例方法不能被子类覆盖 (所以 `searchable_content` 实例方法放在 `included` 块外)
 
 ### 3.3 Writebook 中的 `delegated_type`
 
