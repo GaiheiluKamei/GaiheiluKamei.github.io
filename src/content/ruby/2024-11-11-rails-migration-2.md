@@ -5,7 +5,7 @@ publishedAt: 2024-11-11
 
 > [上篇文章](https://mp.weixin.qq.com/s/-1UIRpAV9UdUB9FB3is0tg)概述了 Rails Migration 的全貌而没有深入具体的细节，比如生成器具体支持哪些字段类型等等，主要是因为没有比官方文档更面面俱到的细节了。
 >
-> 我希望通过简要描述迁移的全貌，使得遇到问题再看官方文档时能够有的放矢，抓住自己需要的部分，而不被连绵不绝仿佛鼠标永远也滚不到尽头的文档所吓倒。
+> 希望通过简要描述迁移的全貌，使得遇到问题再看官方文档时能够有的放矢，抓住自己需要的部分，而不被连绵不绝仿佛鼠标永远也滚不到尽头的文档所吓倒。
 
 ## 1. SQL native syntax
 
@@ -91,7 +91,7 @@ end
 
 如果第一个表创建成功，第二个表创建失败该怎么办？最合适的选择是删除整个数据库，重新创建数据库，然后再运行所有迁移。前面这句话看似平平无奇，但它暗示了一个重要规则：**在生产数据库上运行迁移是很危险的**，如果我们确实要这样做，必须首先备份数据库，然后再使用 `RAILS_ENV=production rails db:migrate` 命令 (但仍然存在风险)。
 
-> 迁移是保持开发人员之间数据库结构同步的绝佳方案，但最好不要在生产数据库执行。我之前的公司大都是通过 DBA 手动执行 SQL 语句完成生产数据库的更改。
+> 迁移是保持开发人员之间数据库结构同步的绝佳方案，但最好不要在生产数据库执行。我之前的公司们大都是通过 DBA 手动执行 SQL 语句完成生产数据库的更改。
 
 ## 4. 迁移之外的数据库 Schema 操作
 
@@ -142,9 +142,9 @@ end
 >
 > ⚠️**Warning**：
 >
-> 值得注意的是，通过 `ActiveRecord::Base.connection` 获取 *connection* 对象的方式已经处于**软弃用**状态，因为这种方式获取的数据库连接会持续到整个请求周期结束，进而降低并发性和资源利用率，所以很多人在实际需要时都使用 `ActiveRecord::Base.connection_pool.with_connection` 来获取对象。
+> 通过 `ActiveRecord::Base.connection` 获取 *connection* 对象的方式已经处于**软弃用**状态，因为这种方式获取的数据库连接会持续到整个请求周期结束，进而降低并发性和资源利用率，所以很多人在实际需要时都使用 `ActiveRecord::Base.connection_pool.with_connection` 来获取对象。
 >
-> 今年 2 月份，官方的一个 pr [https://github.com/rails/rails/pull/51083](https://github.com/rails/rails/pull/51083) 添加了 `ActiveRecord::Base.with_connection` 作为指向 `connection_pool.with_connection` 的快捷方式，所以以后有需要使用 *connection*对象的需要，推荐使用 `with_connection()` 方法。
+> 今年 2 月份，官方的一个 pr [https://github.com/rails/rails/pull/51083](https://github.com/rails/rails/pull/51083) 添加了 `ActiveRecord::Base.with_connection` 作为指向 `connection_pool.with_connection` 的快捷方式，所以以后有使用 *connection*对象的需要，推荐使用 `with_connection()` 方法。
 >
 > **`with_connection()` 接受一个代码块，并将一个连接对象传递到该代码块中，它保证块内的所有操作都使用同一个连接，并确保在多线程环境下的线程安全。当代码块执行完毕之后，连接对象会被异步释放回连接池，从而避免连接泄漏，并通过防止不必要的连接保持来间接提高高 IO 场景下的并发处理能力**。
 >
