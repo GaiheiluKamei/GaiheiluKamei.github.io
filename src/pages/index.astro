@@ -1,50 +1,71 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import { getCollection } from 'astro:content'
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
 
-const jsPosts = (await getCollection('js')).reverse()
-const goPosts = (await getCollection('go')).reverse()
-const rubyPosts = (await getCollection('ruby')).reverse()
-const otherPosts = (await getCollection('other')).reverse()
+const categories = ["ruby", "js", "other", "go"];
+const postsByCategory = {};
+
+for (const category of categories) {
+  postsByCategory[category] = (await getCollection(category)).sort((a, b) => {
+    const dateA = new Date(a.data.publishedAt ?? 0);
+    const dateB = new Date(b.data.publishedAt ?? 0);
+    return dateB.getTime() - dateA.getTime();
+  });
+}
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
-<head>
-	<BaseHead/>
-</head>
-<style>
-	div {
-		grid-column-start: 2;
-		margin-top: 3rem;
-		text-align: ;
-		display: grid;
-		justify-content: space-around;
-	}
-
-	ul {
-		padding: 0;
-	}
-
-	li {
-		list-style-type: none;
-		margin-bottom: .5rem;
-	}
-
-</style>
-<body>
-	<Header/>
-	<main>
-		<div>
-			<ul class="category">
-				{otherPosts.map(p => <li><a href={`other/${p.slug}`}>{p.data.title}</a></li>)}
-				{rubyPosts.map(p => <li><a href={`ruby/${p.slug}`}>{p.data.title}</a></li>)}
-				{goPosts.map(p => <li><a href={`go/${p.slug}`}>{p.data.title}</a></li>)}
-				{jsPosts.map(p => <li><a href={`js/${p.slug}`}>{p.data.title}</a></li>)}
-			</ul>
-		</div>
-	</main>
-	<Footer/>
-</body>
+  <head>
+    <BaseHead />
+    <style>
+      .categories {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(300px, 1fr)
+        ); /* Responsive grid */
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      .category {
+        padding: 0;
+      }
+      .category li {
+        list-style: none;
+        margin-bottom: 0.5rem;
+      }
+      .category a {
+        text-decoration: none;
+        color: inherit;
+        border-bottom: 1px solid currentColor;
+        transition: border-color 0.3s ease;
+      }
+      .category a:hover {
+        border-color: #f97583;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="categories">
+        {
+          categories.map((category) => (
+            <ul class="category">
+              <h2>{category.toUpperCase()}</h2>
+              {postsByCategory[category].map((post) => (
+                <li>
+                  <a href={`/${category}/${post.slug}`}>{post.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          ))
+        }
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>
