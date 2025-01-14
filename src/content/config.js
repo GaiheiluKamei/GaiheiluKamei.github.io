@@ -14,4 +14,5 @@ export const collections = {
     js: posts,
     go: posts,
     other: posts,
+    hidden: posts,
 }
