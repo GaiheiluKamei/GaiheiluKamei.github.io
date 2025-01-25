@@ -1,5 +1,5 @@
 ---
-title: Git Internals 笔记 - 内部结构
+title: 《Git Internals》读书笔记 (1/2) - 内部结构
 publishedAt: '2024-09-19'
 ---
 
