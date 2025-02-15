@@ -220,6 +220,51 @@ export default class extends Controller {
 
 这就是全部的代码，加上空格一共 59 行，提供了所有发送验证码需要的交互逻辑，任何有点 JavaScript 基础的人、甚至不需要了解 Stimulus 都能看懂这种代码，如果让他们多看两个例子，很难保证他们不会写。
 
+### 3.3 不可小觑的 Hotwire
+
+Hotwire 刚出来时我就开始学习，但我一直没学懂，Handbook 里的句子都能读懂，但用起来就手足无措。不过这次结合项目，之前学习的知识就豁然开朗了。
+
+一开始为了赶时间，有些功能实现的比较粗糙：
+
+- 点击侧边栏，用 Turbo Frame 更新右侧内容区
+- 把右侧内容区 (Date Picker 和图表) 都包括在 Turbo Frame 里，如果日期变更，也依然整体替换这个 Turbo Frame
+
+这个实现简单粗暴，直接用 Rails Partial 就行。
+
+但我不太喜欢，因为我把图表的数据放到 data controller 的 value 里，初次加载时带过来，而且之后每次切换日期更新图表时都是从 `data-xx-value` 里获取值，**这让我觉得很内疚，我让 HTML 承担了太多原本不属于它的责任**；另一方面整体替换图表我个人觉得在视觉上页面有点抖动，图表更新不自然。
+
+后来我花了点时间重构它，从侧边栏进入时用 Turbo Frame，在切换日期时用 Json 更新数据，效果好多了：
+
+```js
+async update(event) {
+  if (!event.target?.value) return
+
+  const date = event.target.value
+  console.log(`Target date: ${date}`)
+
+  try {
+    const response = await fetch(`${this.urlValue}?target_date=${date}`, {
+      headers: {
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    })
+
+    if (!response.ok)
+      throw new Error(`HTTP error! status: ${response.status}`)
+
+    const { chart_data, metrics } = await response.json()
+
+    this.#updateChart(chart_data)
+    this.#updateMetrics(metrics)
+  } catch (error) {
+    console.error(`Failed to update chart: ${error}`)
+  }
+}
+```
+
+这是部分代码，由于有多个图表多个页面，所以写了一个通用的 `chart_controller.js`，之后的效果可以这样描述“甚至感觉不到图表的更新”。
+
 ## 4. 总结
 
 原本是做项目的间隙休息时想的文章，断断续续写到了十一点半，有点乱，但就这样吧。
