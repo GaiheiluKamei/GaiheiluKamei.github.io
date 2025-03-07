@@ -187,13 +187,13 @@ end
 
 > [https://stackoverflow.com/questions/20480961/nested-layouts-in-rails](https://stackoverflow.com/questions/20480961/nested-layouts-in-rails)
 
-虽然这两种方案都最终有效，但我选择方案一的原因是显而易见的：**一是因为它直接来自官方文档，简单易懂；二是因为方案二的代码我没看懂**。根据 DeepSeek 的解释，这段代码的意思是：
+虽然这两种方案都最终有效，但我选择方案一的原因是显而易见的：**一是它直接来自官方文档，简单易懂；二是方案二的代码我没看懂**。根据 DeepSeek 的解释，这段代码的意思是：
 
 - `@view_flow.set(:layout, output_buffer)`: 将当前视图的输出内容 `output_buffer` 保存到 Rails 的内容流管理对象 `@view_flow` 中，键为 `:layout`。
 - `render(template: "layouts/#{layout}")`: 渲染指定的父布局模板，如 `layouts/application.html.erb`。
 - `self.output_buffer = ...`: 将父布局渲染后的结果设置为新的输出缓冲区，从而将子布局内容嵌入父布局中。
 
-看起来解释的挺合理的，不过它还是又骗了我一次，它告诉我可以这样用这段代码：
+看起来解释得挺合理的，不过它还是又骗了我一次，它告诉我可以这样用这段代码：
 
 ```html
 <% parent_layout "application" do %>
@@ -204,7 +204,7 @@ end
 
 事实证明根本不行，且不说 `parent_layout` 方法也根本没有接收块参数。
 
-不过方案二本身，似乎对多层嵌套的布局很有用处。
+不过方案二本身，似乎对多层嵌套的布局很有用处，而且灵活性也更胜一筹。
 
 ## 3. 目前的不完美之处
 
