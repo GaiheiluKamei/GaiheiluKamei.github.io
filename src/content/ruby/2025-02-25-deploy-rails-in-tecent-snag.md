@@ -287,14 +287,13 @@ namespace :db do
 end
 ```
 
-需要时可以通过 `docker-compose exec app bin/rails db:multi_migrate` 执行迁移。
+需要时可以通过 `docker compose exec app bin/rails db:multi_migrate` 执行迁移。
 
 最后清理 Volumes 并重新运行 Docker Compose:
 
 ```bash
-docker-compose down -v
-docker-compose up -d --build
-docker-compose exec app bin/rails db:multi_migrate
+docker compose down -v # 非不要不执行
+docker compose up -d --build
 ```
 
 ## 10. 总结
