@@ -1,3 +1,8 @@
+---
+title: Hidden Articles
+publishedAt: 2025-03-26
+---
+
 # Short Notes
 
 ## 2025-03-26
@@ -197,3 +202,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 EXPOSE 80
 CMD ["./bin/thrust", "./bin/rails", "server"]
 ```
+
+> [Odin - JS Bundling 介绍的很详细](https://www.theodinproject.com/lessons/ruby-on-rails-js-bundling)
