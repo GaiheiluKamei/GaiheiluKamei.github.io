@@ -2,8 +2,6 @@
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
-
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
 | `npm install`             | Installs dependencies                            |
@@ -14,6 +12,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
 ## Notes
+
 - [x] Luckily, I tested on Safari 14.1, find out that it doesn't support [CSS nesting](https://caniuse.com/?search=nest) yet.
 
 ## Resources
@@ -22,9 +21,3 @@ All commands are run from the root of the project, from a terminal:
 - [Favicon Generator](https://realfavicongenerator.net/)
 - [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain)
 - [Deploy your Astro Site to GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)
-
-
-
-
-
-
