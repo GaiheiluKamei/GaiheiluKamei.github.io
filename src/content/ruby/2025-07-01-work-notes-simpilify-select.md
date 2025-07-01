@@ -144,7 +144,7 @@ Turbo.visit(`/dashboard/sidebar_type?${new URLSearchParams({target_date: targetD
 
 终于，两个月前的某一天，领导说“**这个下拉框的省份，放到路由里是不是更好点？**”。
 
-黑暗的日子过久了，骤然而至的黎明反倒让人不适。所以一开始我是抗拒的，毕竟 _**It just works**_；而重写，就相当于把项目重写一遍。但仔细思考之后，我觉得无论是从用户在产品上本应有的体验，亦或是仅从技术上的维护性来说，用 `/dashboard/:province/:sidebar_type?target_date=xxx` 的方式重构无疑是最适合当前产品的决定。
+黑暗的日子过久了，骤然而至的黎明反倒让人不适。所以对于这个明智的建议，一开始我是抗拒的，毕竟 _**It just works**_；而重写，就相当于把项目重写一遍。但仔细思考之后，我觉得无论是从用户在产品上本应有的体验，亦或是仅从技术上的维护性来说，用 `/dashboard/:province/:sidebar_type?target_date=xxx` 的方式重构无疑是最适合当前产品的决定。
 
 所以我在原来自定义的下拉框基础上，花了几天时间重构了几乎所有的代码。这样以来，逻辑就变的简单：
 
@@ -204,7 +204,7 @@ export default class extends Controller {
 
 > [https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement#events](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement#events)
 
-所以可以通过 JavaScript 监听 `<select>` 的 `change` 事件，**也可以直接在 `<select>` 标签上定义 `onchange` 属性**，经过几次测试和调整，我最终确定了下面的代码方案，也成功摆脱了一处对 Stimulus 的依赖:
+所以可以通过 JavaScript 监听 `<select>` 的 `change` 事件，**也可以直接在 `<select>` 标签上定义 `onchange` 属性**，经过几次测试和调整，我最终确定了下面的代码方案:
 
 ```ruby
 <%= select_tag :province,
@@ -218,6 +218,8 @@ export default class extends Controller {
 %>
 ```
 
-目前我在前端上的积累还很薄弱，所以在几个月后的我眼里，这也许又会成为新的“粗弊代码、丑陋实现”，但暂时我觉得这已经是最好的实现。
+得益于技术方案上的一点点改良，就能仅用这几行代码完成之前几十上百行代码才能完成的工作，这种成就感无疑令人印象深刻！也让我意识到在工作和实践中，**比起潦草地开始，更重要的或许是谋定而后动**。
 
-人总是在不断成长，而**成长也并不意味着一定要掩盖来时的泥泞**。所以不管代码是好的、坏的、平庸或非凡的，都不过是我在某个曾经的瞬间一字一符敲出来的。
+目前我在前端上的积累还很薄弱，所以在几个月后的我眼里，这也许又会成为新的“粗弊代码、丑陋实现”，但暂时我觉得这已经是我当前能力范围内的最优解。
+
+人总是在不断成长，但**成长并不意味着一定要掩盖来时的泥泞**。所以不管代码是好的、坏的、平庸或非凡的，都是我在某个曾经的瞬间一字一符敲出来的，**那些真实的代码，也都是真实的我**。
